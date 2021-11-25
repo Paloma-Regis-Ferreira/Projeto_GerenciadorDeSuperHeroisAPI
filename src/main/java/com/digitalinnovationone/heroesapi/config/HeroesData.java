@@ -1,30 +1,11 @@
 package com.digitalinnovationone.heroesapi.config;
 
-import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.ResponseMetadata;
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.regions.Region;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.model.*;
-import com.amazonaws.services.dynamodbv2.waiters.AmazonDynamoDBWaiters;
-import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.util.StringUtils;
-import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType;
-import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
-import com.amazonaws.services.dynamodbv2.model.KeyType;
-import com.amazonaws.services.dynamodbv2.model.KeySchemaElement;
-import com.amazonaws.services.dynamodbv2.model.AttributeDefinition;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.document.Item;
-import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import static com.digitalinnovationone.heroesapi.constants.HeroesConstant.REGION_DYNAMO;
 import static com.digitalinnovationone.heroesapi.constants.HeroesConstant.ENDPOINT_DYNAMO;
@@ -37,14 +18,28 @@ public class HeroesData {
 
         DynamoDB dynamoDB = new DynamoDB(client);
 
-        Table table = dynamoDB.getTable("Heroes_Table");
+        Table table = dynamoDB.getTable("Heroes_Table_Demo");
         Item hero = new Item()
                 .withPrimaryKey("id", 1)
                 .withString("nome", "Mulher maravilha")
                 .withString("universe", "dc comics")
                 .withNumber("filmes", 3);
 
+        Item hero1 = new Item()
+                .withPrimaryKey("id", 2)
+                .withString("nome", "Viuva Negra")
+                .withString("universe", "Marvel")
+                .withNumber("filmes", 3);
+
+        Item hero2 = new Item()
+                .withPrimaryKey("id", 3)
+                .withString("nome", "Capitao America")
+                .withString("universe", "Marvel")
+                .withNumber("filmes", 3);
+
         PutItemOutcome outcome = table.putItem(hero);
+        PutItemOutcome outcome1 = table.putItem(hero1);
+        PutItemOutcome outcome2 = table.putItem(hero2);
 
     }
 }

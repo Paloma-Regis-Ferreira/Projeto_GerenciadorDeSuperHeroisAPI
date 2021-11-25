@@ -1,5 +1,7 @@
 package com.digitalinnovationone.heroesapi.config;
 
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ResponseMetadata;
 import com.amazonaws.auth.AWSCredentials;
@@ -29,8 +31,8 @@ import static com.digitalinnovationone.heroesapi.constants.HeroesConstant.ENDPOI
 
 import java.util.Arrays;
 
-@Configuration
-@EnableDynamoDBRepositories
+//@Configuration
+//@EnableDynamoDBRepositories
 public class HeroesTable {
     public static void main(String [] args) throws Exception{
 
@@ -40,18 +42,21 @@ public class HeroesTable {
 
         DynamoDB dynamoDB = new DynamoDB(client);
 
-        String tableName = "Heroes_Table";
+        String tableName = "Heroes_Table_Demo";
 
         try{
+            System.out.println("Criando a tabela, aguarde...");
             Table table = dynamoDB.createTable(tableName,
                     Arrays.asList(new KeySchemaElement("id", KeyType.HASH)),
                     Arrays.asList(new AttributeDefinition("id" , ScalarAttributeType.S)),
                     new ProvisionedThroughput(5L, 5L));
                     table.waitForActive();
+            System.out.println("Sucesso " + table.getDescription().getTableStatus());
 
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+            System.err.println("Não foi possivel criar a tabela");
+            System.err.println(e.getMessage());
         }
     }
 
