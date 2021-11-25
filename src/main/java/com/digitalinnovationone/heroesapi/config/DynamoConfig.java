@@ -25,7 +25,7 @@ public class DynamoConfig {
     private String amazonDynamoDBEndpoint;
 
     @Value("${aws_access_key_id}")
-    private String amazonAWSAcessKey;
+    private String amazonAWSAccessKey;
 
     @Value("${aws_secret_access_key}")
     private String amazonAWSSecretKey;
@@ -43,7 +43,7 @@ public class DynamoConfig {
     @Bean
     public AWSCredentials amazonAWSCredentials() {
         return new BasicAWSCredentials(
-                amazonAWSAcessKey,amazonAWSSecretKey
+                amazonAWSAccessKey,amazonAWSSecretKey
         );
     }
 }
