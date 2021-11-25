@@ -26,7 +26,7 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 import static com.digitalinnovationone.heroesapi.constants.HeroesConstant.REGION_DYNAMO;
 import static com.digitalinnovationone.heroesapi.constants.HeroesConstant.ENDPOINT_DYNAMO;
 
-import java.lang.reflect.Array;
+
 import java.util.Arrays;
 
 @Configuration
