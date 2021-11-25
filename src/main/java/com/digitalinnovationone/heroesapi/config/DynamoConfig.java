@@ -13,7 +13,6 @@ import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRep
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.SpringUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
@@ -31,20 +30,21 @@ public class DynamoConfig {
     @Value("${aws_secret_access_key}")
     private String amazonAWSSecretKey;
 
+
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
         AmazonDynamoDB amazonDynamoDB = new AmazonDynamoDBClient(amazonAWSCredentials());
-            if(!StringUtils.isEmpty(amazonDynamoDBEndpoint)){
-                amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
-            }
-            return amazonDynamoDB;
+        if(!StringUtils.isEmpty(amazonDynamoDBEndpoint)){
+            amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
+        }
+        return amazonDynamoDB;
     }
 
     @Bean
     public AWSCredentials amazonAWSCredentials() {
         return new BasicAWSCredentials(
-                amazonAWSAcessKey,amazonAWSSecretKey;
-        )
+                amazonAWSAcessKey,amazonAWSSecretKey
+        );
     }
 }
 
