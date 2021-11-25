@@ -18,7 +18,7 @@ public class HeroesService {
         return Flux.fromIterable(this.heroesRepository.findAll());
     }
 
-    public Mono <Heroes> findById(String id){
+    public Mono <Heroes> findByIdHero(String id){
         return Mono.justOrEmpty(this.heroesRepository.findById(id));
     }
 
