@@ -7,8 +7,8 @@ CONFIGURAÇÂO DO AWS CLI
     https://docs.aws.amazon.com/pt_br/cli/latest/userguide/install-cliv2-windows.html
   - Configurar:
     cmd: $ aws configure
-    AWS ACCESS KEY ID[none] //passo abaixo
-    AWS SECRET Access Key[none] //passo abaixo
+    AWS ACCESS KEY ID[none] --passo abaixo
+    AWS SECRET Access Key[none] --passo abaixo
     Default region name[none]: us-west-2 
     Default output format[none]: json
   - Gerar access key e key id:
